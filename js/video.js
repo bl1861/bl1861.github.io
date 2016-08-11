@@ -97,7 +97,7 @@ skylink.on('mediaAccessSuccess', function(stream) {
 // Initialize and joinRoom
 skylink.init({
   apiKey: '2c085408-eac9-4714-9693-f491bcc21a90',//'52a88d04-cc43-4e3d-b911-ead23a5fa0c8', // Get your own key at developer.temasys.com.sg
-  defaultRoom: 'GogabE'//getffRoomId()
+  defaultRoom: 'bing'//getffRoomId()
 }, function (error, success) {
   if (error) {
     console.log('skylink.init => Error msg:', error);
