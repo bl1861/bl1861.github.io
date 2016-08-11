@@ -18,28 +18,38 @@
 
 
   <body>
-  	<div class="container video-list">
+  	<div id="app-container" class="container video-list">
+      <section id="controller" class="controller">
+        <div id="div-btns-container" style="visibility:hidden" onMouseOver="btnShow('div-btns')" onMouseOut="btnHide('div-btns')">
+          <div id="div-btns" class="div-btns" style="visibility:hidden">
+            <button id="microphone" class="btn btn-primary circle-btn" onclick="microphone()">
+              <img class="img-btn-circle" src="assets/image/microphone.svg">
+            </button>
+            <button id="camera" class="btn btn-primary circle-btn">
+                <img class="img-btn-circle" src="assets/image/camera.svg">
+            </button>
+            <button id="lock" class="btn btn-primary circle-btn" onclick="lock()">
+                <img class="img-btn-circle" src="assets/image/lock.svg">
+            </button>
+            <button id="sharescreen" class="btn btn-primary circle-btn" onclick="shareScreen()">
+                <img class="img-btn-circle" src="assets/image/screen.svg">
+            </button>
+          </div>
+        </div>
+        <div id="div-start" class="div-start">
+          <button id="btn-start" class="btn btn-primary btn-lg" onclick="start(event)">Start Meeting</button>
+        </div>
+      </section>
+        <ul id="video-list" class="video-list">
+          <!-- videos will be played here -->
+        </ul>
 
-    <!-- <p id="status">Loading room information...</p> -->
-	  <div id="start">
-	    <button id="stop-btn" class="screen-btn" onclick="stop(event)" style="visibility:hidden">stop video</button> 
-	    <button id="sharescreen" onclick="shareScreen()">share screen</button>
-	    <button id="stopscreen" onclick="stopScreen()">stop sharing screen</button>
-	    <button id="lock" onclick="lock()">lock</button>
-	    <button id="unlock" onclick="unlock()">unlock</button>
-	    <button id="start-btn" onclick="start(event)">Start</button><br/>
-	  </div>
-
-	  <ul id="video-list" class="video-list">
-	    <!-- videos will be played here -->
-	  </ul>
-
-	  <div id="" class="">
-	    <!-- fullscreen video is played here -->
-	    <video id="vFullscreen" class="fullscreen" autoplay muted>
-	    </video>
-	  </div>
-	</div>
+        <div id="" class="">
+          <!-- fullscreen video is played here -->
+          <video id="vFullscreen" class="fullscreen" autoplay muted>
+          </video>
+        </div>
+    </div>
 
   </body>
 

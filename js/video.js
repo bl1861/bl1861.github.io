@@ -18,7 +18,10 @@ var fullscreenId = null;
 var peerIds = [];
 // var to recor peer streams
 var streams = [];
-
+// var to record if controller is displayed
+var isCtlDispaly = true;
+// var to record if microphone is muted or not
+var isMuted = true;
 
 
 
@@ -96,8 +99,8 @@ skylink.on('mediaAccessSuccess', function(stream) {
 
 // Initialize and joinRoom
 skylink.init({
-  apiKey: '2c085408-eac9-4714-9693-f491bcc21a90',//'52a88d04-cc43-4e3d-b911-ead23a5fa0c8', // Get your own key at developer.temasys.com.sg
-  defaultRoom: 'bing'//getffRoomId()
+  apiKey: '6000d611-eb29-495a-89f5-3c54b323e674',//'52a88d04-cc43-4e3d-b911-ead23a5fa0c8', // Get your own key at developer.temasys.com.sg
+  defaultRoom: 'GogabE'//getffRoomId()
 }, function (error, success) {
   if (error) {
     console.log('skylink.init => Error msg:', error);
@@ -110,7 +113,7 @@ skylink.init({
 
 
 // start join room
-function start(event) {
+function start() {
   skylink.joinRoom({
     audio: true,
     video: true
@@ -119,8 +122,11 @@ function start(event) {
   'Error: ' + (error.error.message || error.error);
     } else {
       // hide 'start' button after video created
-      event.target.style.visibility = 'hidden';
-      document.getElementById("stop-btn").style.visibility = "";
+      // event.target.style.visibility = 'hidden';
+      document.getElementById("div-start").style.visibility = "hidden";
+      document.getElementById("div-btns-container").style.visibility = "";
+      document.getElementById("controller").style.background = "none";
+      // document.getElementById("stop-btn").style.visibility = "";
     }
   });
 }
@@ -136,7 +142,7 @@ function stop(event) {
       console.log("stop function error");
     }else{
       console.log("stop function success");
-      document.getElementById("start-btn").style.visibility = "";
+      document.getElementById("div-start").style.visibility = "";
     }
   });
   console.log("stop function finish");
@@ -241,9 +247,6 @@ function createLiTag(v, peerId){
   return li;
 }
 
-
-
-
 /* create figcaption object */
 function createFigcaptionTag(peerId){
   var figcaption = document.createElement('figcaption');
@@ -341,11 +344,34 @@ function unlock(){
 }
 
 function microphone(){
-  // TODO
+  if(isMuted){
+    skylink.muteStream({
+      audioMuted: false,
+      videoMuted: false
+    });
+    isMuted = false;
+    console.log("unmute microphone");
+  }else{
+    skylink.muteStream({
+      audioMuted: true,
+      videoMuted: false
+    });
+    isMuted = true;
+    console.log("mute microphone");
+  }
 }
 
 function camera(){
   // TODO
 }
+
+// CSS functions
+function btnShow(id) {
+    document.getElementById(id).style.visibility = "visible";
+  }
+function btnHide(id) {
+    document.getElementById(id).style.visibility = "hidden";
+}
+
 
 
