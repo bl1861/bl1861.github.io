@@ -1,1 +1,46 @@
-hello world
+<html>
+  <head>
+  	<title>Video App</title>
+  	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Load css files -->
+    <link rel="stylesheet" type="text/css" href="css/video.css">
+    <link rel="stylesheet" type="text/css" href="css/imagehover.min.css">
+
+    <!-- 1. Load libraries -->
+    <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+    <!-- 2. video library -->
+    <script src="//cdn.temasys.com.sg/skylink/skylinkjs/0.6.x/skylink.complete.js"></script>
+    <!-- 3. vidoe app -->
+    <script src="js/video.js"></script>
+  </head>
+
+
+  <body>
+  	<div class="container video-list">
+
+    <!-- <p id="status">Loading room information...</p> -->
+	  <div id="start">
+	    <button id="stop-btn" class="screen-btn" onclick="stop(event)" style="visibility:hidden">stop video</button> 
+	    <button id="sharescreen" onclick="shareScreen()">share screen</button>
+	    <button id="stopscreen" onclick="stopScreen()">stop sharing screen</button>
+	    <button id="lock" onclick="lock()">lock</button>
+	    <button id="unlock" onclick="unlock()">unlock</button>
+	    <button id="start-btn" onclick="start(event)">Start</button><br/>
+	  </div>
+
+	  <ul id="video-list" class="video-list">
+	    <!-- videos will be played here -->
+	  </ul>
+
+	  <div id="" class="">
+	    <!-- fullscreen video is played here -->
+	    <video id="vFullscreen" class="fullscreen" autoplay muted>
+	    </video>
+	  </div>
+	</div>
+
+  </body>
+
+</html>
