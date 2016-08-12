@@ -177,6 +177,8 @@ function projectFullscreenVideo(peerId){
   fullscreenId = peerId;
   // set these is fullscreen stream
   existFullscreen = true;
+  // set muted to avoid echo
+  vFullscreen.muted = true;
 
   // get the index of peerId in peerIds
   var index = peerIds.indexOf(peerId);
