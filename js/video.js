@@ -18,8 +18,6 @@ var fullscreenId = null;
 var peerIds = [];
 // var to recor peer streams
 var streams = [];
-// var to record if controller is displayed
-var isCtlDispaly = true;
 // var to record if microphone is muted or not
 var isAudioMuted = false;
 var isVideoMuted = false
@@ -127,7 +125,7 @@ function start() {
     } else {
       document.getElementById("div-start").style.visibility = "hidden";
       document.getElementById("div-btns-container").style.visibility = "";
-      document.getElementById("controller").style.background = "none";
+      btnHide("div-btns");
     }
   });
 }
@@ -143,6 +141,7 @@ function stop() {
       console.log("stop function success");
       document.getElementById("div-start").style.visibility = "";
       document.getElementById("div-btns-container").style.visibility = "hidden";
+      resetController();
     }
   });
   console.log("stop function finish");
@@ -184,7 +183,6 @@ function projectFullscreenVideo(peerId){
   var index = peerIds.indexOf(peerId);
   // attach stream to full screem video tag
   attachMediaStream(vFullscreen, streams[index]);
-
   // call .load() to prevent video stuck
   vFullscreen.load();
 }
@@ -401,6 +399,12 @@ function btnActive(id){
 }
 function btnInActive(id){
   document.getElementById(id).style.background = "ivory";
+}
+function resetController(){
+  isAudioMuted = false;
+  isVideoMuted = false
+  isShareScreen = false;
+  isLock = false;
 }
 
 
