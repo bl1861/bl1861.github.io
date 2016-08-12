@@ -405,6 +405,10 @@ function resetController(){
   isVideoMuted = false
   isShareScreen = false;
   isLock = false;
+  btnInActive('btn-microphone');
+  btnInActive('btn-camera');
+  btnInActive('btn-sharescreen');
+  btnInActive('btn-lock');
 }
 
 
