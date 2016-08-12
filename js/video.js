@@ -125,12 +125,9 @@ function start() {
     if (error) {
   'Error: ' + (error.error.message || error.error);
     } else {
-      // hide 'start' button after video created
-      // event.target.style.visibility = 'hidden';
       document.getElementById("div-start").style.visibility = "hidden";
       document.getElementById("div-btns-container").style.visibility = "";
       document.getElementById("controller").style.background = "none";
-      // document.getElementById("stop-btn").style.visibility = "";
     }
   });
 }
@@ -147,6 +144,7 @@ function stop(event) {
     }else{
       console.log("stop function success");
       document.getElementById("div-start").style.visibility = "";
+      document.getElementById("div-btns-container").style.visibility = "hidden";
     }
   });
   console.log("stop function finish");
