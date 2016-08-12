@@ -211,7 +211,7 @@ function createVideoTag(peerId){
   var v = document.createElement('video');
   /* set attributes of video tage */ 
   v.autoplay = true;
-  v.muted = true; // Added to avoid feedback when testing locally
+  v.muted = false; // Added to avoid feedback when testing locally
   v.id = peerId;
   v.classList.add('smallscreen');
   if(peerId === fullscreenId){
