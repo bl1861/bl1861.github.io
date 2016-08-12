@@ -21,7 +21,11 @@ var streams = [];
 // var to record if controller is displayed
 var isCtlDispaly = true;
 // var to record if microphone is muted or not
-var isMuted = true;
+var isAudioMuted = false;
+var isVideoMuted = false
+var isShareScreen = false;
+var isLock = false;
+
 
 
 
@@ -100,7 +104,7 @@ skylink.on('mediaAccessSuccess', function(stream) {
 // Initialize and joinRoom
 skylink.init({
   apiKey: '2c085408-eac9-4714-9693-f491bcc21a90',//'52a88d04-cc43-4e3d-b911-ead23a5fa0c8', // Get your own key at developer.temasys.com.sg
-  defaultRoom: 'GogabE'//getffRoomId()
+  defaultRoom: 'bing1234'//getffRoomId()
 }, function (error, success) {
   if (error) {
     console.log('skylink.init => Error msg:', error);
@@ -330,55 +334,77 @@ function shareScreen() {
   //     }
   //     return;
   // }
-  skylink.shareScreen(function (error, success) {
-    console.log('shareScreen in');
-    if (success) {
-      console.log('shareScreen success', success);
-      var v = document.getElementById('my-video');
-      attachMediaStream(v, success);
-    }else{
-      console.log('shareScreen fail', success);
-    }
-  });
-  console.log('shareScreen out');
+  if(!isShareScreen){
+    skylink.shareScreen(function (error, success) {
+      console.log('shareScreen in');
+      if (success) {
+        console.log('shareScreen success', success);
+        var v = document.getElementById('my-video');
+        attachMediaStream(v, success);
+      }else{
+        console.log('shareScreen fail', success);
+        btnInActive('btn-sharescreen');
+      }
+    });
+    console.log('shareScreen out');
+    btnActive('btn-sharescreen');
+  }else{
+    skylink.stopScreen();
+    btnInActive('btn-sharescreen');
+  }
+  isShareScreen = !isShareScreen;
 }
 
 function lock(){
-  // TODO
-}
-
-function unlock(){
-  // TODO
+  if(isLock){
+    btnInActive('btn-lock');
+  }else{
+    btnActive('btn-lock');
+  }
+  isLock = !isLock;
 }
 
 function microphone(){
-  if(isMuted){
-    skylink.muteStream({
-      audioMuted: false,
-      videoMuted: false
-    });
-    isMuted = false;
+  if(isAudioMuted){
+    btnInActive('btn-microphone');
     console.log("unmute microphone");
   }else{
-    skylink.muteStream({
-      audioMuted: true,
-      videoMuted: false
-    });
-    isMuted = true;
+    btnActive('btn-microphone');
     console.log("mute microphone");
   }
+  isAudioMuted = !isAudioMuted;
+  changeStreamMute();
 }
 
 function camera(){
-  // TODO
+  if(isVideoMuted){
+    btnInActive('btn-camera');
+  }else{
+    btnActive('btn-camera');
+  }
+  isVideoMuted = !isVideoMuted;
+  changeStreamMute()
+}
+
+function changeStreamMute(){
+  skylink.muteStream({
+      audioMuted: isAudioMuted,
+      videoMuted: isVideoMuted
+  });
 }
 
 // CSS functions
 function btnShow(id) {
-    document.getElementById(id).style.visibility = "visible";
-  }
+  document.getElementById(id).style.visibility = "visible";
+}
 function btnHide(id) {
-    document.getElementById(id).style.visibility = "hidden";
+  document.getElementById(id).style.visibility = "hidden";
+}
+function btnActive(id){
+  document.getElementById(id).style.background = "khaki";
+}
+function btnInActive(id){
+  document.getElementById(id).style.background = "ivory";
 }
 
 
