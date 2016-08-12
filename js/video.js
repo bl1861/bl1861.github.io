@@ -140,6 +140,7 @@ function stop() {
     }else{
       console.log("stop function success");
       document.getElementById("div-start").style.visibility = "";
+      document.getElementById("div-btns").style.visibility = "hidden";
       document.getElementById("div-btns-container").style.visibility = "hidden";
       resetController();
     }
