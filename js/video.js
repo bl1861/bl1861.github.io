@@ -37,7 +37,7 @@ skylink.on('peerJoined', function(peerId, peerInfo, isSelf) {
     fullscreenId = peerId;
     existFullscreen = true;
   }
-  addSmallscreenVideo(peerId);
+  addSmallscreenVideo(peerId, isSelf);
 });
 
 
@@ -193,10 +193,10 @@ function projectFullscreenVideo(peerId){
 
 
 /* new small screen video */
-function addSmallscreenVideo(peerId){
+function addSmallscreenVideo(peerId, isSelf){
   console.log("in add small screen");
   peerIds.push(peerId);
-  var v = createVideoTag(peerId);
+  var v = createVideoTag(peerId, isSelf);
   var li = createLiTag(v, peerId);
   // figcaption tag is to have video hover effect
   var figcaption = createFigcaptionTag(peerId);
@@ -208,12 +208,16 @@ function addSmallscreenVideo(peerId){
 
 
 /* create video object */
-function createVideoTag(peerId){
+function createVideoTag(peerId, isSelf){
   /* create video tag: <video></video> */
   var v = document.createElement('video');
   /* set attributes of video tage */ 
   v.autoplay = true;
-  v.muted = false; // Added to avoid feedback when testing locally
+  if(isSelf){
+    v.muted = true;
+  }else{
+    v.muted = false; // Added to avoid feedback when testing locally
+  }
   v.id = peerId;
   v.classList.add('smallscreen');
   if(peerId === fullscreenId){
