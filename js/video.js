@@ -214,9 +214,11 @@ function createVideoTag(peerId, isSelf){
   /* set attributes of video tage */ 
   v.autoplay = true;
   if(isSelf){
-    v.muted = true;
+    v.muted = true; // Added to avoid feedback when testing locally
+    console.log("createVideTag: isSelf");
   }else{
-    v.muted = false; // Added to avoid feedback when testing locally
+    v.muted = false; 
+    console.log("createVideTag: isPeer");
   }
   v.id = peerId;
   v.classList.add('smallscreen');
