@@ -135,9 +135,7 @@ function start() {
 
 
 // stop the video meeting
-function stop(event) {
-  // hide the stop button
-  event.target.style.visibility = 'hidden';
+function stop() {
   skylink.leaveRoom(function(error, success){
     if(error){
       console.log("stop function error");
